@@ -15,7 +15,7 @@ express()
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM mcsandbox.contact');
+      const result = await client.query('SELECT * FROM mcsandbox.contact LIMIT 10');
       const results = {'results': (result) ? result.rows : null};
       res.render('pages/db', results);
       client.release();
