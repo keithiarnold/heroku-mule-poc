@@ -4,7 +4,6 @@ const pool = new Pool({
   ssl: true
 });
 
-console.log('Connect to db');
 pool.connect();
 
 pool.query('SELECT Name, Email FROM mcsandbox.contact ORDER BY CreatedDate LIMIT 10', function(err, contacts) {
