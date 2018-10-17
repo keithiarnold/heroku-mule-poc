@@ -3,6 +3,7 @@ const pool = new Pool({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
   ssl: true,
   function(err, client, done) {
+    console.log('Log Message');
     if (err) {
       console.error(err)
       process.exit(1);
