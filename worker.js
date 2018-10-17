@@ -7,7 +7,7 @@ const pool = new Pool({
 console.log('Connect to db');
 pool.connect();
 
-pool.query('SELECT * FROM mcsandbox.contact ORDER BY CreatedDate LIMIT 10', function(err, contacts) {
+pool.query('SELECT Name, Email FROM mcsandbox.contact ORDER BY CreatedDate LIMIT 10', function(err, contacts) {
   if (err) {
     console.error(err);
   } else {
