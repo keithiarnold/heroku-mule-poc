@@ -1,8 +1,9 @@
-const {Client} = require('pg')
+const { Client } = require('pg')
 const client = new Client()
 
-await client.connect()
+client.connect()
 
-const res = await createInterface.query('SELECT * FROM mcsandbox.contact ORDER BY CreatedDate LIMIT 10')
-console.log(res.rows)
-await client.end()
+client.query('SELECT * FROM mcsandbox.contact ORDER BY CreatedDate LIMIT 10', (err, res) => {
+  console.log(err ? err.stack : res.rows[0].message) // Hello World!
+  client.end()
+})
