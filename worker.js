@@ -18,9 +18,9 @@ const pool = new Pool({
   }
 });*/
 
-var pg = require('pg');
+import { connect } from 'pg';
 
-pg.connect({
+connect({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
   ssl: true,
   function(err, client, done) {
