@@ -4,16 +4,14 @@ const pool = new Pool({
   ssl: true
 });
 
-pool.connect();
-
-pool.on('notification', function(msg) {
-  console.log(msg);
-});
-
-pool.query('LISTEN watchers', function(err, contacts) {
+pool.connect(function(err, client) {
   if (err) {
-    console.error(err);
-  } else {
-    console.log(contacts);
+    console.log(err);
   }
+  client.on('notification', function(msg) {
+    console.log('trigger fired with: ');
+    console.log(msg);
+  });
+
+  var query = client.query('LISTEN watchers');
 });
