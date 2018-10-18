@@ -1,19 +1,32 @@
-const {Pool} = require('pg');
-const pool = new Pool({
+const {Client} = require('pg');
+const event = require('events');
+const util = require('util');
+
+function DbEvent() {
+  event.call(this);
+}
+util.inherits(DbEvent, event);
+var dbEvent = new DbEvent;
+
+dbEvent.on('watchers', (msg) => {
+  console.log('Triggerd new contact');
+  console.log(msg);
+});
+
+const client = new Client({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
   ssl: true
 });
 
-pool.connect(function(err, client) {
+client.connect(function(err, client) {
   if (err) {
     console.log(err);
   }
+
   client.on('notification', function(msg) {
-    console.log('trigger fired with: ');
-    console.log(msg);
+    let payload = JSON.parse(msg.payload);
+    dbEvent.emit(msg.channel, payload);
+  })
 
-    console.log(client.query('SELECT * FROM mcsandbox.contacts WHERE Id = '+ msg.payload.id));
-  });
-
-  var query = client.query('LISTEN watchers');
+  client.query('LISTEN new_contact');
 });
