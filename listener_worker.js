@@ -11,6 +11,8 @@ pool.connect(function(err, client) {
   client.on('notification', function(msg) {
     console.log('trigger fired with: ');
     console.log(msg);
+
+    console.log(client.query('SELECT * FROM mcsandbox.contacts WHERE Id = ' mgs.payload));
   });
 
   var query = client.query('LISTEN watchers');
