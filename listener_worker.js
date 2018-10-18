@@ -12,7 +12,7 @@ pool.connect(function(err, client) {
     console.log('trigger fired with: ');
     console.log(msg);
 
-    console.log(client.query('SELECT * FROM mcsandbox.contacts WHERE Id = ' mgs.payload));
+    console.log(client.query('SELECT * FROM mcsandbox.contacts WHERE Id = '+ msg.payload));
   });
 
   var query = client.query('LISTEN watchers');
