@@ -2,7 +2,7 @@ var pg = require ('pg');
 
 var connectionString = process.env.HEROKU_POSTGRESQL_NAVY_URL
 
-pg.connect(pgConString, function(err, client) {
+pg.connect(connectionString, function(err, client) {
   if (err) {
     console.log(err);
   }
