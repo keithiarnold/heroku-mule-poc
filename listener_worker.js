@@ -1,11 +1,19 @@
-import { connect } from 'pg';
+const {Pool} = require('pg');
+const pool = new Pool({
+  connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
+  ssl: true
+});
 
-connect(process.env.HEROKU_POSTGRESQL_NAVY_URL, function(err, client) {
+pool.connect();
+
+pool.on('notification', function(msg) {
+  console.log(msg);
+});
+
+pool.query('LISTEN watchers', function(err, contacts) {
   if (err) {
-    console.log(err);
+    console.error(err);
+  } else {
+    console.log(contacts);
   }
-  client.on('notification', function(msg) {
-    console.log(msg);
-  });
-  var query = client.query("LISTEN watchers");
 });
