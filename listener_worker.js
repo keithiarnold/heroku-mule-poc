@@ -25,6 +25,7 @@ client.connect(function(err, client) {
 
   client.on('notification', function(msg) {
     console.log(msg);
+    
     let payload = JSON.parse(msg.payload);
     dbEvent.emit(msg.channel, payload);
   })
