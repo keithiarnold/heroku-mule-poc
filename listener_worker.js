@@ -8,7 +8,7 @@ function DbEvent() {
 util.inherits(DbEvent, event);
 var dbEvent = new DbEvent;
 
-dbEvent.on('watchers', (msg) => {
+dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact');
   console.log(msg);
 });
@@ -25,7 +25,6 @@ client.connect(function(err, client) {
 
   client.on('notification', function(msg) {
     console.log(msg);
-    
     let payload = JSON.parse(msg.payload);
     dbEvent.emit(msg.channel, payload);
   })
