@@ -36,5 +36,5 @@ dbEvent.on('new_contact', (msg) => {
       console.log(error);
     }
     console.log('Body: ', body);
-  };)
+  });
 });
