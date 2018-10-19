@@ -31,7 +31,7 @@ dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact: ');
   console.log(msg);
 
-  request.('https://www.google.com', function(error, response, body) {
+  request('https://www.google.com', function(error, response, body) {
     if (error) {
       console.log(error);
     }
