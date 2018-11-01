@@ -30,15 +30,16 @@ var dbEvent = new DbEvent;
 dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact: ');
   console.log(msg);
+  var triggeringId = JSON.parse(msg).id;
 
-  client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + msg.Id, function(error, result) {
+  client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + triggeringId, function(error, result) {
     console.log(result);
 
     request('https://www.google.com', function(error, response, body) {
     if (error) {
       console.log(error);
     }
-      console.log('Body: ', body);
+      console.log('Got it');
     });
   });
 });
