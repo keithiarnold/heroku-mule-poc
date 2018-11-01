@@ -31,7 +31,7 @@ dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact: ');
   console.log(msg);
 
-  client.query('SELECT * FROM salesforce.contact WHERE Id = ' + msg.payload.Id, function(error, result) {
+  client.query('SELECT * FROM salesforce.contact WHERE Id = ' + msg.Id, function(error, result) {
     console.log(result);
 
     request('https://www.google.com', function(error, response, body) {
