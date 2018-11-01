@@ -30,7 +30,10 @@ var dbEvent = new DbEvent;
 dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact: ');
   console.log(msg);
-  var triggeringId = JSON.parse(msg).id;
+  var jsonMessage = JSON.parse(msg);
+  console.log(jsonMessage);
+  var triggeringId = jsonMessage.id;
+  console.log(triggeringId);
 
   client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + triggeringId, function(error, result) {
     console.log(result);
