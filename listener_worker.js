@@ -31,14 +31,10 @@ dbEvent.on('new_contact', (record) => {
   console.log('Triggerd new contact: ');
   console.log(record);
 
-  client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + record.id, function(error, result) {
-    console.log(result);
-
-    request('https://www.google.com', function(error, response, body) {
-    if (error) {
-      console.log(error);
-    }
-      console.log('Got it');
-    });
+  request('https://www.google.com', function(error, response, body) {
+  if (error) {
+    console.log(error);
+  }
+    console.log('Got it');
   });
 });
