@@ -30,6 +30,8 @@ var dbEvent = new DbEvent;
 dbEvent.on('new_contact', (msg) => {
   console.log('Triggerd new contact: ');
   console.log(msg);
+  console.log('JSON already?');
+  console.log(msg.id);
 
   var msgAsJson = JSON.parse(msg);
 
