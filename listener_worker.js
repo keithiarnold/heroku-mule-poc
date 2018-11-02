@@ -27,20 +27,12 @@ function DbEvent() {
 util.inherits(DbEvent, event);
 var dbEvent = new DbEvent;
 
-dbEvent.on('new_contact', (msg) => {
+dbEvent.on('new_contact', (record) => {
   console.log('Triggerd new contact: ');
-  console.log(msg);
-  console.log('JSON already?');
-  console.log(msg.id);
+  console.log(record);
 
-  var msgAsJson = JSON.parse(msg);
-
-  console.log(msgAsJson);
-  console.log(msgAsJson.id);
-  console.log(msgAsJson.sfid);
-
-  client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + triggeringId, function(error, result) {
-    //console.log(result);
+  client.query('SELECT * FROM mcsandbox.contact WHERE Id = ' + record.id, function(error, result) {
+    console.log(result);
 
     request('https://www.google.com', function(error, response, body) {
     if (error) {
