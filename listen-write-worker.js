@@ -38,6 +38,10 @@ dbEvent.on('new_contact', (record) => {
         console.log('Got it');
     });*/
 
+    insertNewSubscription();
+});
+
+const insertNewSubscription() {
     client.query('BEGIN', (error) => {
         if (error) {
             console.log(error);
@@ -63,4 +67,4 @@ dbEvent.on('new_contact', (record) => {
             });
         }
     });
-});
+}
