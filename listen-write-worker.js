@@ -44,9 +44,10 @@ dbEvent.on('new_contact', (record) => {
             return;
         } else {
             var herokuTestSubscriptionId = 'a204B000000HcFv';
-            client.query('INSERT INTO mcsandbox.subscriber__c ($1, $3, $5) VALUES ($2, $4, $6) ', ['Contact__c', record.sfid, 
-                    'Subscription__c', herokuTestSubscriptionId, 
-                    'Subscriber_Status__c', 'Subscribed'], (error, result) => {
+            client.query('INSERT INTO mcsandbox.subscriber__c (Contact__c, Subscription__c, Subscriber_Status__c) VALUES ($1, $2, $3) ', [
+                    record.sfid, 
+                    herokuTestSubscriptionId, 
+                    'Subscribed'], (error, result) => {
                 if (error) {
                     console.log(error);
                     return;
