@@ -31,12 +31,12 @@ dbEvent.on('new_contact', (record) => {
     console.log('Triggerd new contact: ');
     console.log(record);
 
-    request('https://www.google.com', function(error, response, body) {
+    /*request('https://www.google.com', function(error, response, body) {
     if (error) {
         console.log(error);
     }
         console.log('Got it');
-    });
+    });*/
 
     client.query('BEGIN', (error) => {
         if (error) {
