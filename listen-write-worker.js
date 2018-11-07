@@ -27,9 +27,9 @@ function DbEvent() {
 util.inherits(DbEvent, event);
 var dbEvent = new DbEvent;
 
-dbEvent.on('new_contact', (record) => {
+dbEvent.on('new_contact', (contactRecord) => {
     console.log('Triggerd new contact: ');
-    console.log(record);
+    console.log(contactRecord);
 
     /*request('https://www.google.com', function(error, response, body) {
     if (error) {
@@ -38,19 +38,19 @@ dbEvent.on('new_contact', (record) => {
         console.log('Got it');
     });*/
 
-    insertNewSubscription();
+    insertNewSubscription(contactRecord);
 });
 
-const insertNewSubscription() {
+function insertNewSubscription(contactRecord) {
     client.query('BEGIN', (error) => {
         if (error) {
             console.log(error);
             return;
         } else {
             var herokuTestSubscriptionId = 'a204B000000HcFv';
-            var uniqueKey = record.sfid + '.' + herokuTestSubscriptionId;
+            var uniqueKey = contactRecord.sfid + '.' + herokuTestSubscriptionId;
             client.query('INSERT INTO mcsandbox.Subscriber__c (Contact__c, Subscription__c, Subscriber_Status__c, Unique_Key__c) VALUES ($1, $2, $3, $4) ', [
-                    record.sfid, herokuTestSubscriptionId, 'Subscribed', uniqueKey], (error, result) => {
+                    contactRecord.sfid, herokuTestSubscriptionId, 'Subscribed', uniqueKey], (error, result) => {
                 if (error) {
                     console.log(error);
                     return;
