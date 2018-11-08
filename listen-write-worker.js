@@ -30,16 +30,18 @@ var dbEvent = new DbEvent;
 dbEvent.on('new_contact', (contactRecord) => {
     console.log('Triggerd new contact: ');
     console.log(contactRecord);
+    //postToMarketing(contactRecord);
+    insertNewSubscription(contactRecord);
+});
 
-    /*request('https://www.google.com', function(error, response, body) {
+function postToMarketing(contactRecord) {
+    request('https://www.google.com', function(error, response, body) {
     if (error) {
         console.log(error);
     }
         console.log('Got it');
-    });*/
-
-    insertNewSubscription(contactRecord);
-});
+    });
+}
 
 function insertNewSubscription(contactRecord) {
     client.query('BEGIN', (error) => {
