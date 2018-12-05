@@ -58,7 +58,7 @@ function postToMarketing(contactRecord) {
         body: bodyObject
     };
 
-    request(endpoint, function(error, response, body) {
+    request(options, function(error, response, body) {
     if (error) {
         console.log(error);
     }
