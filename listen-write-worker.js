@@ -43,6 +43,38 @@ function postToMarketing(contactRecord) {
     });
 }
 
+function postToMarketing(contactRecord) {
+    var mule_client_id = process.env.MULE_CLIENT_ID;
+    var mule_client_secret = process.env.MULE_CLIENT_SECRET;
+    var params = '?client_id=' + mule_client_id + '&client_secret=' + mule_client_secret;
+    var endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de';
+
+    var bodyObject = {
+        "dataExtensions": [{
+            "dataExtension": {
+                "contactId": contactRecord.sfid,
+                "firstName": contactRecord.firstName,
+                "lastName": contactRecord.lastName,
+                "email": contactRecord.email
+            }
+        }]
+    };
+
+    var options = {
+        method: 'POST',
+        url: endpoint + params,
+        json: true,
+        body: 
+    };
+
+    request(, function(error, response, body) {
+    if (error) {
+        console.log(error);
+    }
+        console.log('Got it');
+    });
+}
+
 function insertNewSubscription(contactRecord) {
     client.query('BEGIN', (error) => {
         if (error) {
