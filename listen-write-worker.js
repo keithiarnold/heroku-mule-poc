@@ -35,15 +35,6 @@ dbEvent.on('new_contact', (contactRecord) => {
 });
 
 function postToMarketing(contactRecord) {
-    request('https://www.google.com', function(error, response, body) {
-    if (error) {
-        console.log(error);
-    }
-        console.log('Got it');
-    });
-}
-
-function postToMarketing(contactRecord) {
     var mule_client_id = process.env.MULE_CLIENT_ID;
     var mule_client_secret = process.env.MULE_CLIENT_SECRET;
     var params = '?client_id=' + mule_client_id + '&client_secret=' + mule_client_secret;
@@ -83,8 +74,9 @@ function insertNewSubscription(contactRecord) {
         } else {
             var herokuTestSubscriptionId = 'a204B000000HcFv';
             var uniqueKey = contactRecord.sfid + '.' + herokuTestSubscriptionId;
-            client.query('INSERT INTO mcsandbox.Subscriber__c (Contact__c, Subscription__c, Subscriber_Status__c, Unique_Key__c) VALUES ($1, $2, $3, $4) ', [
-                    contactRecord.sfid, herokuTestSubscriptionId, 'Subscribed', uniqueKey], (error, result) => {
+            client.query('INSERT INTO mcsandbox.Subscriber__c (Contact__c, Subscription__c, Subscriber_Status__c, Unique_Key__c) VALUES ($1, $2, $3, $4) ', 
+                    [contactRecord.sfid, herokuTestSubscriptionId, 'Subscribed', uniqueKey], 
+                    (error, result) => {
                 if (error) {
                     console.log(error);
                     return;
