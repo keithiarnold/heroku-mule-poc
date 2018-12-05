@@ -35,9 +35,7 @@ dbEvent.on('new_contact', (contactRecord) => {
 });
 
 function postToMarketing(contactRecord) {
-    var mule_client_id = process.env.MULE_CLIENT_ID;
-    var mule_client_secret = process.env.MULE_CLIENT_SECRET;
-    var params = '?client_id=' + mule_client_id + '&client_secret=' + mule_client_secret;
+    var params = '?client_id=' + process.env.MULE_CLIENT_ID + '&client_secret=' + process.env.MULE_CLIENT_SECRET;
     var endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
 
     var bodyObject = {
