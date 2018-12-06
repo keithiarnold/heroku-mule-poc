@@ -41,7 +41,6 @@ function postToMarketing(contactRecord) {
         "dataExtensions": [{
             "dataExtension": {
                 "contactId": contactRecord.sfid,
-                "externalID": "test"
                 "firstName": contactRecord.firstName,
                 "lastName": contactRecord.lastName,
                 "email": contactRecord.email
