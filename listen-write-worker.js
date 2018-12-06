@@ -35,13 +35,13 @@ dbEvent.on('new_contact', (contactRecord) => {
 });
 
 function postToMarketing(contactRecord) {
-    var params = '?client_id=' + process.env.MULE_CLIENT_ID + '&client_secret=' + process.env.MULE_CLIENT_SECRET;
     var endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
 
     var bodyObject = {
         "dataExtensions": [{
             "dataExtension": {
                 "contactId": contactRecord.sfid,
+                "externalID": "test"
                 "firstName": contactRecord.firstName,
                 "lastName": contactRecord.lastName,
                 "email": contactRecord.email
@@ -51,9 +51,13 @@ function postToMarketing(contactRecord) {
 
     var options = {
         method: 'POST',
-        url: endpoint + params,
+        url: endpoint,
         json: true,
-        body: bodyObject
+        body: bodyObject,
+        auth: {
+            user: process.env.MULE_CLIENT_ID,
+            pass: process.env.MULE_CLIENT_SECRET
+        }
     };
 
     request(options, function(error, response, body) {
