@@ -61,6 +61,7 @@ function postToMarketing(contactRecord) {
         console.log(error);
     }
         console.log('Got it');
+        console.log(response);
     });
 }
 
