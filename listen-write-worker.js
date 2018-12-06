@@ -48,15 +48,17 @@ function postToMarketing(contactRecord) {
         }]
     };
 
+    var authorization = {
+        user: process.env.MULE_CLIENT_ID,
+        pass: process.env.MULE_CLIENT_SECRET
+    };
+
     var options = {
         method: 'POST',
         url: endpoint,
         json: true,
         body: bodyObject,
-        auth: {
-            user: process.env.MULE_CLIENT_ID,
-            pass: process.env.MULE_CLIENT_SECRET
-        }
+        auth: authorization
     };
 
     request(options, function(error, response, body) {
