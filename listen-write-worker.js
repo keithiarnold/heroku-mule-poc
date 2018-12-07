@@ -2,6 +2,7 @@ const { Client } = require('pg');
 const event = require('events');
 const util = require('util');
 const request = require('request');
+const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 
 const client = new Client({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
@@ -61,7 +62,7 @@ function postToMarketing(contactRecord) {
         auth: authorization
     };
 
-    request(options, function(error, response, body) {
+    fixieRequest(options, function(error, response, body) {
     if (error) {
         console.log(error);
     }
