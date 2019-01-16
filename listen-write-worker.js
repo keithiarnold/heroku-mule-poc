@@ -53,24 +53,31 @@ function postToMarketing(contactRecord) {
         pass: process.env.MULE_CLIENT_SECRET
     };
 
+    var header = {
+        'User-Agent': 'node.js'
+    };
+
     var options = {
         method: 'POST',
         proxy: process.env.QUOTAGUARDSTATIC_URL,
         url: endpoint,
         json: true,
         body: bodyObject,
-        auth: authorization
+        auth: authorization,
+        headers: header
     };
 
-    request(options, function(error, response, body) {
-    if (error) {
-        console.log(error);
+    function callback(error, response, body) {
+            console.log('Response:');
+            console.log(response);
+            console.log('Error:');
+            console.log(error);
+            console.log('Body:')
+            console.log(body);
+        }
     }
-        console.log('Response:');
-        console.log(response);
-        console.log('Body:')
-        console.log(body);
-    });
+
+    request(options, callback);
 }
 
 function insertNewSubscription(contactRecord) {
