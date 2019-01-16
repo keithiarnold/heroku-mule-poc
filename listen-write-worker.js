@@ -3,7 +3,8 @@ const event = require('events');
 const util = require('util');
 const request = require('request');
 // const proxyUrl = request.defaults({'proxy': process.env.QUOTAGUARDSTATIC_URL});
-const destinationDataExt = "7BD27EC4-26FF-495B-AD68-37A1023C2C3E"
+const destinationDataExt = "7BD27EC4-26FF-495B-AD68-37A1023C2C3E";
+const endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
 
 const client = new Client({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
@@ -37,8 +38,6 @@ dbEvent.on('new_contact', (contactRecord) => {
 });
 
 function postToMarketing(contactRecord) {
-    var endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
-
     var bodyObject = {
         "dataExtension": {
             "contactId": contactRecord.sfid,
@@ -67,8 +66,9 @@ function postToMarketing(contactRecord) {
     if (error) {
         console.log(error);
     }
-        console.log('Got it');
+        console.log('Response:');
         console.log(response);
+        console.log('Body:')
         console.log(body);
     });
 }
