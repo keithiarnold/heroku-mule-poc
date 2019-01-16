@@ -33,7 +33,7 @@ dbEvent.on('new_contact', (contactRecord) => {
     console.log('Triggerd new contact: ');
     console.log(contactRecord);
     postToMarketing(contactRecord);
-    insertNewSubscription(contactRecord);
+    //insertNewSubscription(contactRecord);
 });
 
 function postToMarketing(contactRecord) {
