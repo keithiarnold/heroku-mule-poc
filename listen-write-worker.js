@@ -2,7 +2,8 @@ const { Client } = require('pg');
 const event = require('events');
 const util = require('util');
 const request = require('request');
-const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
+const proxyUrl = request.defaults({'proxy': process.env.QUOTAGUARDSTATIC_URL});
+const destinationDataExt = "7BD27EC4-26FF-495B-AD68-37A1023C2C3E"
 
 const client = new Client({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
@@ -39,14 +40,13 @@ function postToMarketing(contactRecord) {
     var endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
 
     var bodyObject = {
-        "dataExtensions": [{
-            "dataExtension": {
-                "contactId": contactRecord.sfid,
-                "firstName": contactRecord.firstName,
-                "lastName": contactRecord.lastName,
-                "email": contactRecord.email
-            }
-        }]
+        "dataExtension": {
+            "contactId": contactRecord.sfid,
+            "externalID": destinationDataExt,
+            "firstName": contactRecord.firstName,
+            "lastName": contactRecord.lastName,
+            "email": contactRecord.email
+        }
     };
 
     var authorization = {
@@ -62,7 +62,7 @@ function postToMarketing(contactRecord) {
         auth: authorization
     };
 
-    fixieRequest(options, function(error, response, body) {
+    proxyUrl(options, function(error, response, body) {
     if (error) {
         console.log(error);
     }
