@@ -48,13 +48,12 @@ function postToMarketing(contactRecord) {
         }
     };
 
-    var authorization = {
-        user: process.env.MULE_CLIENT_ID,
-        pass: process.env.MULE_CLIENT_SECRET
-    };
+    var authorization = "Basic " + 
+        new Buffer(process.env.MULE_CLIENT_ID + ":" + process.env.MULE_CLIENT_SECRET)
+        .toString("base54");
 
     var header = {
-        'User-Agent': 'node.js'
+        'Content-Type': 'application/json.js'
     };
 
     var options = {
