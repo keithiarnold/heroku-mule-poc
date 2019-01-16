@@ -2,7 +2,6 @@ const { Client } = require('pg');
 const event = require('events');
 const util = require('util');
 const request = require('request');
-// const proxyUrl = request.defaults({'proxy': process.env.QUOTAGUARDSTATIC_URL});
 const destinationDataExt = "7BD27EC4-26FF-495B-AD68-37A1023C2C3E";
 
 const client = new Client({
