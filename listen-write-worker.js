@@ -48,9 +48,10 @@ function postToMarketing(contactRecord) {
         }
     };
 
-    var authorization = "Basic " + 
-        new Buffer(process.env.MULE_CLIENT_ID + ":" + process.env.MULE_CLIENT_SECRET)
-        .toString("base54");
+    var authorization = {
+        user: process.env.MULE_CLIENT_ID,
+        pass: process.env.MULE_CLIENT_SECRET
+    };
 
     var header = {
         'Content-Type': 'application/json.js'
