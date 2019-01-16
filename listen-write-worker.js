@@ -63,7 +63,6 @@ function postToMarketing(contactRecord) {
         method: 'POST',
         proxy: process.env.QUOTAGUARDSTATIC_URL,
         url: endpoint,
-        json: true,
         body: bodyObject,
         headers: header
     };
