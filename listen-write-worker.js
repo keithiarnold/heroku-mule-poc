@@ -56,7 +56,7 @@ function postToMarketing(contactRecord) {
         process.env.ESB_DEV_ASU;
 
     var header = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json;charset=UTF-8'
     };
 
     var options = {
