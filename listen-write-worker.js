@@ -4,7 +4,6 @@ const util = require('util');
 const request = require('request');
 // const proxyUrl = request.defaults({'proxy': process.env.QUOTAGUARDSTATIC_URL});
 const destinationDataExt = "7BD27EC4-26FF-495B-AD68-37A1023C2C3E";
-const endpoint = 'https://esb-dev.asu.edu/api/v1/asu-sfmc-edplus-de/dataExtension';
 
 const client = new Client({
   connectionString: process.env.HEROKU_POSTGRESQL_NAVY_URL,
@@ -48,7 +47,13 @@ function postToMarketing(contactRecord) {
         }
     };
 
-    var authorization = process.env.MULE_BASIC_AUTH;
+    var endpoint = 
+        "https://" + 
+        process.env.MULE_CLIENT_ID + 
+        ":" + 
+        process.env.MULE_CLIENT_SECRET +
+        "@" + 
+        process.env.ESB_DEV_ASU;
 
     var header = {
         'Content-Type': 'application/json'
@@ -60,7 +65,6 @@ function postToMarketing(contactRecord) {
         url: endpoint,
         json: true,
         body: bodyObject,
-        auth: authorization,
         headers: header
     };
 
