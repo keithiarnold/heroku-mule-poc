@@ -41,7 +41,7 @@ function postToMarketing(contactRecord) {
     var bodyObject = {
         "dataExtension": {
             "contactId": contactRecord.sfid,
-            "externalID": destinationDataExt,
+            "externalId": destinationDataExt,
             "firstName": contactRecord.firstName,
             "lastName": contactRecord.lastName,
             "email": contactRecord.email
