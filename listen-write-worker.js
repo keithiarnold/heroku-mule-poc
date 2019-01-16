@@ -76,6 +76,8 @@ function postToMarketing(contactRecord) {
         console.log(body);
     }
 
+    console.log('Options: ');
+    console.log(options);
     request(options, callback);
 }
 
