@@ -54,7 +54,7 @@ function postToMarketing(contactRecord) {
     };
 
     var header = {
-        'Content-Type': 'application/json.js'
+        'Content-Type': 'application/json'
     };
 
     var options = {
