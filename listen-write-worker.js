@@ -68,12 +68,12 @@ function postToMarketing(contactRecord) {
     };
 
     function callback(error, response, body) {
-        console.log('Response:');
-        console.log(response);
+        // console.log('Response:');
+        // console.log(response);
         console.log('Error:');
         console.log(error);
-        // console.log('Body:')
-        // console.log(body);
+        console.log('Body:')
+        console.log(body);
     }
 
     console.log('Options: ');
