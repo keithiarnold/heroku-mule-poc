@@ -56,13 +56,14 @@ function postToMarketing(contactRecord) {
         process.env.ESB_DEV_ASU;
 
     var header = {
-        'Content-Type': 'application/json;charset=UTF-8'
+        'Content-Type': 'application/json'
     };
 
     var options = {
         method: 'POST',
         proxy: process.env.QUOTAGUARDSTATIC_URL,
         url: endpoint,
+        json: true,
         body: bodyObject,
         headers: header
     };
